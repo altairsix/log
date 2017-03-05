@@ -3,6 +3,7 @@ package log
 import (
 	"context"
 	"io/ioutil"
+	underlying "log"
 	"time"
 )
 
@@ -21,4 +22,16 @@ func StartContext(parent context.Context, opName string, fields ...Field) (conte
 	}
 
 	return parent, span
+}
+
+func Fatalln(args ...interface{}) {
+	underlying.Fatalln(args...)
+}
+
+func Fatalf(format string, v ...interface{}) {
+	underlying.Fatalf(format, v...)
+}
+
+func Fatal(args ...interface{}) {
+	underlying.Fatal(args...)
 }
