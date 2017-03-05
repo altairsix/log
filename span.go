@@ -22,10 +22,16 @@ func (s *SpanLog) Close(err error, msg string, fields ...Field) error {
 	return err
 }
 
-// Close should be called when when exiting the span
+// Debug just prints output
 func (s *SpanLog) Debug(msg string, fields ...Field) {
 	f := zapFields(s.fields, fields)
 	s.logger.Debug(msg, f...)
+}
+
+// Info just prints output
+func (s *SpanLog) Info(msg string, fields ...Field) {
+	f := zapFields(s.fields, fields)
+	s.logger.Info(msg, f...)
 }
 
 func (s *SpanLog) zapFields(fields []Field, additional ...Field) []zap.Field {
